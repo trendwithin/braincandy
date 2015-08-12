@@ -21,7 +21,7 @@ class TestCheater < MiniTest::Test
   end
 
   def test_string_of_3_letters
-    validation_array = %w{ a b c abc ab bc ac }
+    validation_array = %w( a b c abc ab bc ac )
     test_array = @cheater.letter_combinations(@letters)
     assert_equal validation_array.sort, test_array.sort
   end
