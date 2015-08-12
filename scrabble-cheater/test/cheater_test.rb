@@ -21,7 +21,7 @@ class TestCheater < MiniTest::Test
   end
 
   def test_string_of_3_letters
-    validation_array = %w( a b c abc ab bc ac )
+    validation_array = %w( a ab abc ac acb b ba bac bc bca c ca cab cb cba )
     test_array = @cheater.letter_combinations(@letters)
     assert_equal validation_array.sort, test_array.sort
   end
@@ -31,9 +31,11 @@ class TestCheater < MiniTest::Test
   end
 
   def test_word_car_is_found_in_dictionary
-    words = @cheater.unjumble(@car)
-    assert true, words.include?('car')
-    assert true, words.include?('arc')
+    words_list = @cheater.unjumble(@car)
+    assert true, words_list.include?('car')
+    assert true, words_list.include?('arc')
+    assert true, words_list.include?('ar')
+    refute_equal true, words_list.include?('cr')
   end
 
   def test_7_letter_word_and_combinations
@@ -42,5 +44,11 @@ class TestCheater < MiniTest::Test
     assert true, words.include?('bat')
     assert true, words.include?('sits')
     assert true, words.include?('stab')
+    refute_equal true, words.include?('sbta')
+  end
+
+  def test_prints_wordlist
+    words = @cheater.unjumble(@car)
+    @cheater.cheatsheet
   end
 end
