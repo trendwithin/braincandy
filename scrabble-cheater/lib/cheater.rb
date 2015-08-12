@@ -12,6 +12,7 @@ class Cheater
     max = letters.size
     @jumble = letters.split ''
     @jumble = (min..max).flat_map{ |chars| @jumble.combination(chars).map(&:join) }
+  end
 
   def unjumble(letters)
     scrambled = letter_combinations(letters)
